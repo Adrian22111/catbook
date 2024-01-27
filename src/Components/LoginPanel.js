@@ -18,7 +18,7 @@ function LoginPanel() {
                 </div>
                 <div className="buttons flex gap-10 my-10 mx-auto">
                     <Link to={'/register/'}><div className={'bg-light-gray text-dark-gray hover:bg-dark-gray hover:text-light-gray p-3 rounded-3xl cursor-pointer'}>Zarejestruj Się</div></Link>
-                    <Link to={'/cats/'}><div className={'bg-dark-gray text-light-gray":"bg-light-gray text-dark-gray"}  hover:bg-dark-gray hover:text-light-gray p-3 rounded-3xl cursor-pointer'}>Zaloguj Się</div></Link>
+                    <Link to={'/cats/'}><div className={'bg-dark-gray text-light-gray hover:bg-dark-gray hover:text-light-gray p-3 rounded-3xl cursor-pointer'}>Zaloguj Się</div></Link>
                 </div>
             </div>
         </div>

@@ -5,6 +5,7 @@ import api from './api';
 import { BrowserRouter, Link, Route, Routes} from 'react-router-dom';
 import CatProfile from './Components/CatProfile';
 import RegisterPanel from './Components/RegisterPanel';
+import AddCatForm from './Components/AddCatForm';
 
 // try{
 //   const response = await api.get('/api/users/');
@@ -22,6 +23,7 @@ function App() {
         <Route exact path ="/" Component={LoginPanel}/>
         <Route path = "/cats/" Component={CatList}/>
         <Route path = "/cats/:id" Component={CatProfile}/>
+        <Route path = "/cats/add/" Component={AddCatForm}/>
         <Route path = "/register/" Component={RegisterPanel}/>
         {/* <Route path = "/cats/:id" Component={CatProfile} /> */}
       </Routes>

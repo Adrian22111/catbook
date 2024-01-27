@@ -2,11 +2,13 @@ import MainBanner from "./MainBanner";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 import api from "../api";
+import { useParams } from "react-router-dom";
 
 const images = [
     {
       original: "../images/dog.jpg",
       thumbnail: "../images/dog.jpg",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at nulla ut leo finibus dignissim. Phasellus ultrices sollicitudin neque ansequat sit amet non felis. Suspendisse a maximus magna, non posuere purus. Aliquam vel felis suscipit, pharetra purus et, ullamcorper quam. Praesent mollis dolor a ante pharetra faucibus. Donec dignissim, neque sed porttitor suscipit"
     },
     {
       original: "../images/examplecat.jpg",
@@ -23,6 +25,17 @@ const images = [
   }
 
 function CatProfile(){
+    const catId = useParams().id;
+    // try{
+    //     const fetchCats = async () =>{
+    //         const response =  await api.get(`/api/cats/${catId}`);
+    //         console.log(response);
+    //     }
+    // }
+    // catch(e)
+    // {
+    //     console.log(e);
+    // }
     return(
         <>
             <MainBanner/>
