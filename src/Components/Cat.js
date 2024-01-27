@@ -15,7 +15,6 @@ function Cat(props){
                         <p className="font-bold">Opis:</p>
                         <p>{props.catObj.desc}</p>
                     </div>
-                    
                 </div>  
             </div>
         </div>

@@ -3,6 +3,7 @@ import LoginPanel from './Components/LoginPanel';
 import CatList from './Components/CatList';
 import api from './api';
 import { BrowserRouter, Link, Route, Routes} from 'react-router-dom';
+import CatProfile from './Components/CatProfile';
 
 // try{
 //   const response = await api.get('/api/users/');
@@ -10,16 +11,17 @@ import { BrowserRouter, Link, Route, Routes} from 'react-router-dom';
 // }
 // catch(e)
 // {
-//   console.log(e);
 // }
 
-
+  
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route exact path ="/" Component={LoginPanel}/>
         <Route path = "/cats/" Component={CatList}/>
+        <Route path = "/cats/:id" Component={CatProfile}/>
+        {/* <Route path = "/cats/:id" Component={CatProfile} /> */}
       </Routes>
     </BrowserRouter>
     
