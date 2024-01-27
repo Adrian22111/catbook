@@ -3,7 +3,8 @@ import { FaCat } from "react-icons/fa6";
 import { FaKey } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
-function LoginPanel() {
+
+function RegisterPanel(){
     return (
         <div className="container flex flex-col mx-auto bg-white rounded-3xl max-w-lg bg-main-cats bg-[url('page-images/main_cats.jpg')] bg-cover mt-32">
             <div className="header text-5xl mt-5 mx-auto text-yellow-900">CATBOOK</div>
@@ -17,12 +18,12 @@ function LoginPanel() {
                     <input type = "password" placeholder="Hasło" className="h-10 bg-transparent outline-none text-dark-gray"/>
                 </div>
                 <div className="buttons flex gap-10 my-10 mx-auto">
-                    <Link to={'/register/'}><div className={'bg-light-gray text-dark-gray hover:bg-dark-gray hover:text-light-gray p-3 rounded-3xl cursor-pointer'}>Zarejestruj Się</div></Link>
-                    <Link to={'/cats/'}><div className={'bg-dark-gray text-light-gray":"bg-light-gray text-dark-gray"}  hover:bg-dark-gray hover:text-light-gray p-3 rounded-3xl cursor-pointer'}>Zaloguj Się</div></Link>
+                    <div className={'bg-dark-gray text-light-gray hover:bg-dark-gray hover:text-light-gray p-3 rounded-3xl cursor-pointer'}>Zarejestruj Się</div>
+                    <Link to={'/'}><div  className={'bg-light-gray text-dark-grayhover:bg-dark-gray hover:text-light-gray p-3 rounded-3xl cursor-pointer'}>Zaloguj Się</div></Link>
                 </div>
             </div>
         </div>
-        );
-    }
-  
-  export default LoginPanel;
+    );
+}
+
+export default RegisterPanel;
