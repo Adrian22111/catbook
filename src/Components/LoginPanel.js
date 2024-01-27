@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FaCat } from "react-icons/fa6";
 import { FaKey } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 function LoginPanel() {
 
@@ -21,7 +22,7 @@ function LoginPanel() {
                 <div className="buttons flex gap-10 my-10 mx-auto">
                     {/* <div className="bg-light-gray h-10">123</div> */}
                     <div onClick = {() => {setAction('Sign Up')}} className={`${action === "Sign Up" ? "bg-dark-gray text-light-gray" : "bg-light-gray text-dark-gray"}   hover:bg-dark-gray hover:text-light-gray p-3 rounded-3xl cursor-pointer`}>Zarejestruj Się</div>
-                    <div onClick = {() => {setAction('Login')}} className={`${action ==="Login"?"bg-dark-gray text-light-gray":"bg-light-gray text-dark-gray"}  hover:bg-dark-gray hover:text-light-gray p-3 rounded-3xl cursor-pointer`}>Zaloguj Się</div>
+                    <Link to={'/cats/'}><div onClick = {() => {setAction('Login')}} className={`${action ==="Login"?"bg-dark-gray text-light-gray":"bg-light-gray text-dark-gray"}  hover:bg-dark-gray hover:text-light-gray p-3 rounded-3xl cursor-pointer`}>Zaloguj Się</div></Link>
                 </div>
             </div>
         </div>
