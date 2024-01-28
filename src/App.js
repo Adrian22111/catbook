@@ -6,6 +6,7 @@ import { BrowserRouter, Link, Route, Routes} from 'react-router-dom';
 import CatProfile from './Components/CatProfile';
 import RegisterPanel from './Components/RegisterPanel';
 import AddCatForm from './Components/AddCatForm';
+import UpdateCatForm from './Components/UpdateCatForm';
 
 // try{
 //   const response = await api.get('/api/users/');
@@ -24,8 +25,9 @@ function App() {
         <Route path = "/cats/" Component={CatList}/>
         <Route path = "/cats/:id" Component={CatProfile}/>
         <Route path = "/cats/add/" Component={AddCatForm}/>
+        <Route path = "/cats/edit/:id" Component={UpdateCatForm}/>
+        {/* <Route path = "/user/edit/:id" Component={UpdateCatForm}/> */}
         <Route path = "/register/" Component={RegisterPanel}/>
-        {/* <Route path = "/cats/:id" Component={CatProfile} /> */}
       </Routes>
     </BrowserRouter>
     

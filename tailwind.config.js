@@ -9,6 +9,7 @@ module.exports = {
         'light-gray' : '#f7f2e9',
         'dark-gray'  : '#797979',
         'cat-orange' : '#f9ae3b',
+        'main-theme' : '#f7f2e9'
       },
       backgroundImage:{
         'main-cats' : "url('page-images/main_cats.jpg')"
