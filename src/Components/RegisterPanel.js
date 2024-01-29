@@ -2,6 +2,7 @@ import { useState } from "react";
 import { FaCat } from "react-icons/fa6";
 import { FaKey } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import { FaEnvelope } from "react-icons/fa6";
 
 
 function RegisterPanel(){
@@ -10,8 +11,12 @@ function RegisterPanel(){
             <div className="header text-5xl mt-5 mx-auto text-yellow-900">CATBOOK</div>
             <div className="inputs flex flex-col mt-5 gap-5 rounded-md  justify-center items-center">
                 <div className="login flex items-center mx-auto bg-light-gray h-16 rounded-md mt-10"> 
+                    <FaEnvelope className="mx-5"/>
+                    <input type= "text" placeholder= "adres E-mail" className="h-10 bg-transparent outline-none text-dark-gray"/>
+                </div>
+                <div className="login flex items-center mx-auto bg-light-gray h-16 rounded-md "> 
                     <FaCat className="mx-5"/>
-                    <input type= "text" placeholder= "Użytkownik" className="h-10 bg-transparent outline-none text-dark-gray"/>
+                    <input type= "text" placeholder= "Nazwa Użytkownika" className="h-10 bg-transparent outline-none text-dark-gray"/>
                 </div>
                 <div className="password flex items-center mx-auto bg-light-gray h-16 rounded-md">
                      <FaKey className="mx-5"/>
