@@ -1,35 +1,40 @@
 import MainBanner from "./MainBanner";
 import Cat from "./Cat";
 import { Link } from "react-router-dom";
-
-const catsData = [
-    {
-      id: 1,
-      name: "Bob",
-      breed: "Pers",
-      owner: "Darek",
-      desc: "Now I am become Death, the Destroyer of Worlds",
-      src: "../images/examplecat.jpg",
-    },
-    {
-        id: 2,
-        name: "Puszek",
-        breed: "Pers",
-        owner: "Arek",
-        desc: "Now I am become Death, the Destroyer of Worlds",
-        src: "../images/dog.jpg",
-    },
-  ];
-
+import api from "../api";
+import { useEffect, useState } from "react";
 
 function CatList(){
+    
+    const [databaseData, setDatabaseData] = useState([]);
+    const fetchCats = async () => {
+        try{
+            const response = await api.get('/api/cats/').then((response) => {
+                setDatabaseData(response.data.items||[]);
+            });
+        }
+        catch(e){
+            console.log(e);
+        }
+      }
+    
+      useEffect(() =>{
+        fetchCats();
+      }, []);
+
+      const renderCatLink = (cat) => {
+        return (
+          <Link to={`/cats/${cat.id}`} key={cat.id}>
+            <Cat name={cat.name} breed={cat.breed.name} desc={cat.description} cat={cat} />
+          </Link>
+        );
+      };
+
     return(
         <div className="">
             <MainBanner/>
             <ul className="cats cat-list-container max-w-7xl mx-auto mt-10 flex flex-col gap-y-5">
-                {catsData.map((cat) => (
-                    <Link to={`/cats/${cat.id}`}><Cat catObj={cat} key={cat.id} /></Link>
-                ))}
+                {databaseData.map((cat) => renderCatLink(cat))}
             </ul>
         </div>   
     )

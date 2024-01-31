@@ -7,6 +7,7 @@ import CatProfile from './Components/CatProfile';
 import RegisterPanel from './Components/RegisterPanel';
 import AddCatForm from './Components/AddCatForm';
 import UpdateCatForm from './Components/UpdateCatForm';
+import UserProfile from './Components/UserProfile';
 
 // try{
 //   const response = await api.get('/api/users/');
@@ -26,7 +27,8 @@ function App() {
         <Route path = "/cats/:id" Component={CatProfile}/>
         <Route path = "/cats/add/" Component={AddCatForm}/>
         <Route path = "/cats/edit/:id" Component={UpdateCatForm}/>
-        {/* <Route path = "/user/edit/:id" Component={UpdateCatForm}/> */}
+
+        <Route path = "/user/profile/:id" Component={UserProfile}/>
         <Route path = "/register/" Component={RegisterPanel}/>
       </Routes>
     </BrowserRouter>

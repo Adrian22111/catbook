@@ -3,15 +3,15 @@ import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 import api from "../api";
 import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 
-const images = [
+const testImages = [
     {
-      original: "../images/dog.jpg",
+      original: "https://catbook.azurewebsites.net/storage/bb09bff059b9984c364acf0a94c512de8dde94dbaae2c53a6aa872a2ca1e3d6c.jpg",
       thumbnail: "../images/dog.jpg",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at nulla ut leo finibus dignissim. Phasellus ultrices sollicitudin neque ansequat sit amet non felis. Suspendisse a maximus magna, non posuere purus. Aliquam vel felis suscipit, pharetra purus et, ullamcorper quam. Praesent mollis dolor a ante pharetra faucibus. Donec dignissim, neque sed porttitor suscipit"
     },
     {
-      original: "../images/examplecat.jpg",
+      original: "https://catbook.azurewebsites.net/storage/bb09bff059b9984c364acf0a94c512de8dde94dbaae2c53a6aa872a2ca1e3d6c.jpg",
       thumbnail: "../images/examplecat.jpg",
     },
   ];
@@ -26,23 +26,42 @@ const images = [
 
 function CatProfile(){
     const catId = useParams().id;
-    // try{
-    //     const fetchCats = async () =>{
-    //         const response =  await api.get(`/api/cats/${catId}`);
-    //         console.log(response);
-    //     }
-    // }
-    // catch(e)
-    // {
-    //     console.log(e);
-    // }
+
+    const [catData, setCatData] = useState();
+    const [finalImages, setFinalImages] = useState();
+    let images = [];
+    let formatedImages = [];
+    const fetchCat = async (catId) => {
+        try{
+            await api.get(`/api/cats/${catId}`).then((response) => {
+                setCatData(response.data);                
+                images = response.data.images;
+                console.log(images);
+                images.map((image) => {
+                    formatedImages.push({
+                        original: 'https://catbook.azurewebsites.net/storage/'+image.storage_file.url,
+                        thumbnail: 'https://catbook.azurewebsites.net/storage/'+image.storage_file.url
+                    })    
+                });
+                setFinalImages(formatedImages);
+            });
+        }
+        catch(e){
+            console.log(e);
+        }
+      }
+
+      useEffect(() =>{
+        fetchCat(catId);
+      }, []);
+
     return(
         <>
             <MainBanner/>
             <div className="profile-container max-w-7xl mx-auto mt-5 flex flex-col items-center ">
                 <div className="cat-credentials flex  flex-col max-w-3xl ">
                     <div className="gallery-container  mx-auto">
-                        <ImageGallery className="" items={images}/>
+                        {finalImages && finalImages.length > 0 && <ImageGallery className="" items={finalImages}/>}
                     </div>
                     <div className="p-5 bg-white rounded-md border-2 border-cat-orange">
                         <div className="flex gap-x-1">
