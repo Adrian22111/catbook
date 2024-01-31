@@ -43,6 +43,7 @@ function CatProfile(){
                         thumbnail: 'https://catbook.azurewebsites.net/storage/'+image.storage_file.url
                     })    
                 });
+                console.log(formatedImages);
                 setFinalImages(formatedImages);
             });
         }
@@ -63,22 +64,23 @@ function CatProfile(){
                     <div className="gallery-container  mx-auto">
                         {finalImages && finalImages.length > 0 && <ImageGallery className="" items={finalImages}/>}
                     </div>
+                    {/* {console.log(catData.name)} */}
                     <div className="p-5 bg-white rounded-md border-2 border-cat-orange">
                         <div className="flex gap-x-1">
                             <p className="font-bold">Imię:</p>
-                            <p>{cat.name}</p>
+                            <p>{catData?catData.name:''}</p>
                         </div>
                         <div className="flex gap-x-1">
                             <p className="font-bold">Rasa:</p>
-                            <p>{cat.breed}</p>
+                            <p>{catData?catData.breed.name:''}</p>
                         </div>
                         <div className="flex gap-x-1">
                             <p className="font-bold">Właściciel:</p>
-                            <p>{cat.owner}</p>
+                            <p>{catData?catData.owner:''}</p>
                         </div>
                         <div className="flex gap-x-1 flex-col">
                             <p className="font-bold">Opis:</p>
-                            <p>{cat.desc}</p>
+                            <p>{catData?catData.desc:''}</p>
                         </div>
                     </div>  
                 </div>

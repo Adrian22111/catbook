@@ -15,6 +15,7 @@ function AddCatForm(){
         id: '',
         name: '',
     });
+    const [files, setFiles] = useState();
     const [modal,setModal] = useState(false);
     
     const toggleModal = () => {
@@ -42,12 +43,20 @@ function AddCatForm(){
         form.append('name',catName);
         form.append('breed_id', breed);
         form.append('description', desc);
+        console.log(files);
+
+        let fileList = Array.from(files);
+        fileList.forEach((file) => {
+            form.append(`images`, file);
+        });
+        
         try{
-            await api.post('/api/cats', form);          
-            setCatName('');
-            setBreed('');
-            setDesc('');
-            toggleModal();
+            await api.post('/api/cats', form).then((response) => {
+                setCatName('');
+                setBreed('');
+                setDesc('');
+                toggleModal();
+            });          
         }
         catch(e){
             console.log(e);
@@ -81,6 +90,9 @@ function AddCatForm(){
                     </div>
                     <div className="login flex items-center mx-auto bg-light-gray h-16 rounded-md w-96 h-40 p-2"> 
                         <textarea onChange={(e) => {setDesc(e.target.value)}} value={desc} required maxLength = "1000" placeholder="Opis" className="h-40 outline-none text-dark-gray w-96 resize-none bg-transparent"/>
+                    </div>
+                    <div className="flex items-center mx-auto  h-16 rounded-md p-2"> 
+                        <input  onChange={(e) => {setFiles(e.target.files)}} id="files" type="file" accept="image/png, image/jpeg"  multiple className="p-5 rounded-xl text-dark-gray bg-light-gray"/>
                     </div>
                     <div className="buttons flex gap-10 mx-auto mb-5">
                         <button type="submit" className={'bg-light-gray text-dark-gray hover:bg-dark-gray hover:text-light-gray p-3 rounded-3xl cursor-pointer'}>Zapisz</button>
