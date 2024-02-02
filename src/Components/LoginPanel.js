@@ -3,12 +3,12 @@ import { FaCat } from "react-icons/fa6";
 import { FaKey } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import AuthContext from "../context/AuthProvider";
+import { jwtDecode } from "jwt-decode";
 import api from "../api";
-import axios from "axios";
-const LOGIN_URL = '/cats/';
+import Cookies from "universal-cookie"
 
 function LoginPanel() {
-
+    const cookies = new Cookies();
     const [user, setUser] = useState('');
     const [pwd, setPwd] = useState('');
     const [errMsg, setErrMsg] = useState('');
@@ -28,6 +28,10 @@ function LoginPanel() {
                 const accessToken = response?.data?.access_token;
                 console.log(response?.data?.accessToken);
                 setAuth({user, pwd, accessToken});
+                const decoded = jwtDecode(accessToken);
+                cookies.set('jwt_authorization', accessToken, {
+                    expires: new Date(decoded.exp * 1000),
+                })
                 setPwd('');
                 setUser('');
                 setSuccess(true);

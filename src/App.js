@@ -12,48 +12,51 @@ import AddBreed from './Components/AddBreed';
 import EditBreed from './Components/EditBreed';
 import AuthContext from './context/AuthProvider';
 import { useContext } from 'react';
+import Cookies from 'universal-cookie';
 
 
   
 function App() {
   const { auth } = useContext(AuthContext);
+  const cookies = new Cookies();
+  const authCookieSet = cookies.get('jwt_authorization');
   console.log(auth);
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path="/"
-          element={auth.accessToken ? <Navigate to="/cats" /> : <LoginPanel />}
+          element={(auth.accessToken || authCookieSet) ? <Navigate to="/cats" /> : <LoginPanel />}
         />
         <Route path="/register" element={<RegisterPanel />} />
         <Route
           path="/cats/*"
-          element={auth.accessToken ? <CatList /> : <Navigate to="/" />}
+          element={(auth.accessToken || authCookieSet) ? <CatList /> : <Navigate to="/" />}
         />
         <Route path="/cats/:id" element={auth.accessToken ? <CatProfile /> : <Navigate to="/" />} />
         <Route
           path="/cats/add"
-          element={auth.accessToken ? <AddCatForm /> : <Navigate to="/" />}
+          element={(auth.accessToken || authCookieSet) ? <AddCatForm /> : <Navigate to="/" />}
         />
         <Route
           path="/cats/edit/:id"
-          element={auth.accessToken ? <UpdateCatForm /> : <Navigate to="/" />}
+          element={(auth.accessToken || authCookieSet)? <UpdateCatForm /> : <Navigate to="/" />}
         />
         <Route
           path="/user/profile/:id"
-          element={auth.accessToken ? <UserProfile /> : <Navigate to="/" />}
+          element={(auth.accessToken || authCookieSet)? <UserProfile /> : <Navigate to="/" />}
         />
         <Route
           path="/user/edit/:id"
-          element={auth.accessToken ? <UserEditForm /> : <Navigate to="/" />}
+          element={(auth.accessToken || authCookieSet)? <UserEditForm /> : <Navigate to="/" />}
         />
         <Route
           path="/breed/add"
-          element={auth.accessToken ? <AddBreed /> : <Navigate to="/" />}
+          element={(auth.accessToken || authCookieSet)? <AddBreed /> : <Navigate to="/" />}
         />
         <Route
           path="/breed/edit/:id"
-          element={auth.accessToken ? <EditBreed /> : <Navigate to="/" />}
+          element={(auth.accessToken || authCookieSet)? <EditBreed /> : <Navigate to="/" />}
         />
       </Routes>
     </BrowserRouter>
