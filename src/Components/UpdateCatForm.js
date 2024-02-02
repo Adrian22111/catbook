@@ -146,8 +146,21 @@ function UpdateCatForm(){
 
     }
 
+    const handleDelete = async (catId) =>{
+        console.log(123);
+        console.log(catId);
+        try{
+            await api.delete(`/api/cats/${catId}`).then((response) => {
+                console.log(response);
+            });
+        }
+        catch(e){
+            console.log(e);
+        }
+    }
+
     return(
-        <div className="">
+        <div className="mb-10">
             <MainBanner/>
             {successWindow && (
                 <div className="modal w-96 h-12 bg-white fixed rounded-md p-5 m-auto left-0 right-0 top-0 bottom-0 border-2 border-black">
@@ -196,6 +209,7 @@ function UpdateCatForm(){
                     <div className="buttons flex gap-10 mx-auto mb-5">
                         <div onClick={() => {handleSaveCat(catId)}} className={'bg-light-gray text-dark-gray hover:bg-dark-gray hover:text-light-gray p-3 rounded-3xl cursor-pointer'}>Zapisz</div>
                         <Link to={'/cats/'}><div className={'bg-light-gray text-dark-gray  hover:bg-dark-gray hover:text-light-gray p-3 rounded-3xl cursor-pointer'}>Powrót</div></Link>
+                        <div onClick={() => {handleDelete(catId)}}className={'bg-red-400 text-white  hover:bg-red-300 hover:text-light-gray p-3 rounded-3xl cursor-pointer'}>Usuń</div>
                     </div>
                 </div>
             </div>
