@@ -36,14 +36,14 @@ function CatProfile(){
             await api.get(`/api/cats/${catId}`).then((response) => {
                 setCatData(response.data);                
                 images = response.data.images;
-                console.log(images);
+                // console.log(images);
                 images.map((image) => {
                     formatedImages.push({
                         original: 'https://catbook.azurewebsites.net/storage/'+image.storage_file.url,
                         thumbnail: 'https://catbook.azurewebsites.net/storage/'+image.storage_file.url
                     })    
                 });
-                console.log(formatedImages);
+                // console.log(formatedImages);
                 setFinalImages(formatedImages);
             });
         }
@@ -64,8 +64,7 @@ function CatProfile(){
                     <div className="gallery-container  mx-auto">
                         {finalImages && finalImages.length > 0 && <ImageGallery className="" items={finalImages}/>}
                     </div>
-                    {/* {console.log(catData.name)} */}
-                    <div className="p-5 bg-white rounded-md border-2 border-cat-orange">
+                    <div className="p-5 bg-white rounded-md border-2 border-cat-orange min-w-96">
                         <div className="flex gap-x-1">
                             <p className="font-bold">Imię:</p>
                             <p>{catData?catData.name:''}</p>
